@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>毕业快乐！</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #f5f7fc 0%, #e9eef5 100%);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            font-family: system-ui, 'Segoe UI', 'Noto Sans', sans-serif;
+            padding: 20px;
+            padding-top: 26vh;
+            box-sizing: border-box;
+        }
+        .card {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(2px);
+            border-radius: 64px;
+            padding: 48px 32px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .emoji {
+            font-size: 64px;
+            margin-bottom: 24px;
+            display: inline-block;
+            animation: gentleFloat 3s ease infinite;
+        }
+        .quote {
+            font-size: 28px;
+            font-weight: 550;
+            line-height: 1.4;
+            color: #1a2c3e;
+            margin: 24px 0 16px;
+            padding: 0 8px;
+            word-break: break-word;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 15px;
+            color: #7c8b9c;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 24px;
+            letter-spacing: 0.3px;
+        }
+        button {
+            background: none;
+            border: none;
+            font-size: 14px;
+            color: #4b6b8f;
+            margin-top: 20px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+        button:hover {
+            opacity: 1;
+        }
+        @keyframes gentleFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
+        }
+        @media (max-width: 500px) {
+            .card { padding: 32px 24px; border-radius: 48px; }
+            .quote { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+<div class="card" id="app">
+    <div class="emoji" id="emoji">✨</div>
+    <div class="quote" id="message">加载中...</div>
+    <button id="refreshBtn" style="display: none;">换一句 →</button>
+</div>
+
+<script>
+    const quotes = [
+        "出发吧，世界等你好久了。",
+        "未来是旷野，不是轨道。",
+        "今天你比想象中更勇敢。",
+        "星光不问赶路人，时光不负有心人。",
+        "哪怕步伐很小，也要步步前进。",
+        "你值得这世间所有的美好。",
+        "花会沿路盛开，你以后的路也是。",
+        "既然选择了远方，便只顾风雨兼程。",
+        "别怕，光芒就在你心里。",
+        "每一个普通的改变，都将改变普通。",
+        "慢慢来，谁还没有一个努力的过程。",
+        "你本身就是一颗星星，不用借助谁的光。",
+        "生活原本沉闷，但跑起来就有风。",
+        "允许一切发生，然后记得让自己开心。",
+        "最好的状态是：眼里写满故事，脸上不见风霜。",
+        "没有命中注定的结局，只有不够努力的过程。",
+        "万物皆有裂痕，那是光照进来的地方。"
+    ];
+    const emojis = ["✨","🌟","💪","🌸","🌈","⭐","🍀","🔥","💎","🌻","🕊️","💖","🏆","🎈"];
+    
+    function getRandomItem(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+    
+    function showRandomMessage() {
+        const randomQuote = getRandomItem(quotes);
+        const randomEmoji = getRandomItem(emojis);
+        document.getElementById('message').innerText = randomQuote;
+        document.getElementById('emoji').innerText = randomEmoji;
+    }
+    
+    // 页面打开时立即随机显示一句
+    showRandomMessage();
+
+    // 可选：允许用户点击按钮刷新另一句（如果需要关闭此功能，删除下面几行即可）
+    const refreshBtn = document.getElementById('refreshBtn');
+    refreshBtn.style.display = 'inline-block';  // 显示按钮（如果你不希望观众手动刷新，可以注释这一行）
+    refreshBtn.addEventListener('click', () => {
+        showRandomMessage();
+    });
+</script>
+</body>
+</html>
